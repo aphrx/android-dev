@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'auth.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,11 +29,11 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
             OutlineButton(
-              onPressed: () => null,
+              onPressed: () => authService.googleSignIn(),
               child: Text('Login with Google'),
             ),
             OutlineButton(
-              onPressed: () => null,
+              onPressed: () => authService.signOut(),
               child: Text('Logout'),
             )
           ],
