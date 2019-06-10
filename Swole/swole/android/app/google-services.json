@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "872582672980-m3u4agrf557iggvogb9jj7u39jvd9ck0.apps.googleusercontent.com",
+          "client_id": "872582672980-pg8i01i9itk51mlk2aan7t0au0pu6qku.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "ca.aphrx.swole",
-            "certificate_hash": "40cbf3cac881e1eb89e122eb3e30f062185f9c47"
+            "certificate_hash": "e68df1623ba29daf66d52fc4dbbf20c8b16e7794"
           }
         },
         {

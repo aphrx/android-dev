@@ -27,16 +27,20 @@ class AuthService {
   }
 
   Future<FirebaseUser> googleSignIn() async {
+    print("Google sign in");
     loading.add(true);
+    print("Google acc sign in");
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    print("Google auth sign in");
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    print("Getting credentials");
     AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken
     );
-
+    print("Signing in");
     FirebaseUser user = await _auth.signInWithCredential(credential);
-
+    print("Updating user data");
     updateUserData(user);
     print("Signed in " + user.displayName);
 
