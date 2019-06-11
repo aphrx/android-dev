@@ -8,6 +8,8 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
 
+  FirebaseUser user2;
+
   Observable<FirebaseUser> user;
   Observable<Map<String, dynamic>> profile;
   PublishSubject loading = PublishSubject();
@@ -23,28 +25,23 @@ class AuthService {
         return Observable.just({ });
       }
     });
-
   }
 
   Future<FirebaseUser> googleSignIn() async {
-    print("Google sign in");
     loading.add(true);
-    print("Google acc sign in");
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    print("Google auth sign in");
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    print("Getting credentials");
     AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken
     );
-    print("Signing in");
     FirebaseUser user = await _auth.signInWithCredential(credential);
-    print("Updating user data");
     updateUserData(user);
     print("Signed in " + user.displayName);
 
     loading.add(false);
+
+    this.user2 = user;
     return user;
   }
 
@@ -58,6 +55,10 @@ class AuthService {
       'displayName': user.displayName,
       'lastSeen': DateTime.now()
     }, merge: true);
+  }
+
+  FirebaseUser currUser() {
+    return user2;
   }
 
   void signOut() {
