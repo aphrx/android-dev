@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'auth.dart';
@@ -43,19 +45,17 @@ class HomeScreen extends StatelessWidget {
 
     void login(BuildContext context) {
 
-    Future<FirebaseUser> temp = authService.googleSignIn();
+    FutureOr Function(FirebaseUser value) user;
+      authService.googleSignIn().then(user);
 
-    if(temp != null) {
-       Navigator.pushAndRemoveUntil(
+    
+      Navigator.pushAndRemoveUntil(
       context, 
       MaterialPageRoute(
         builder: (context) => HomeApp()
       ), 
      ModalRoute.withName("/Home")
     );
-    } else {
-      //insert something to do here
-    }
   }
 }
 
